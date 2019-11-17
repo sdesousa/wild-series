@@ -18,6 +18,7 @@
 /.web-server-pid
 ###< symfony/web-server-bundle ###
 
-###> phpstorm config ###
+
 .idea
-###< phpstorm config ###
+.env
+.env.test
