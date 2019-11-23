@@ -3,10 +3,29 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="build/css/app.css">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
     </head>
+
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+        <header>
+            {% include "navbar.html.twig" %}
+        </header>
+
+        {% block body %}
+
+        {% endblock %}
+
+        <script src="build/js/app.js"></script>
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </body>
+
 </html>

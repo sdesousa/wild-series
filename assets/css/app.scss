@@ -1,0 +1,44 @@
+@import "~bootstrap/scss/bootstrap";
+
+:root {
+  --color-lighter: #f0f0f0;
+  --color-primary: #1abc9c;
+  --color-somber: #0a2342;
+  --font-primary: 'Lato', sans-serif;
+  --font-secondary: 'Quicksand';
+  --size-font-primary: 1.2rem;
+  --size-font-title: 2.4rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--color-somber);
+  font-family: var(--font-primary);
+  font-size: var(--size-font-primary);
+}
+
+
+body {
+  background-color: var(--color-lighter);
+}
+
+.navbar {
+  background-color: var(--color-somber);
+  height: 60px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar-brand {
+  color: var(--color-lighter);
+}
+
+h1 {
+  margin-top: 80px;
+  font-size: var(--size-font-title);
+  color: var(--color-primary);
+  text-align: center;
+}
