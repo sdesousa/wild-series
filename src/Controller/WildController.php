@@ -9,12 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/wild", name="wild_")
+ * @Route("/wild")
  */
 Class WildController extends AbstractController
 {
     /**
-     * @Route("/index", name="index")
+     * @Route("/index", name="wild_index")
      */
     public function index(): Response
     {
@@ -34,7 +34,7 @@ Class WildController extends AbstractController
      * Getting a program with a formatted slug for title
      *
      * @param string $slug The slugger
-     * @Route("/show/{slug<^[a-z0-9-]+$>}", defaults={"slug" = null}, name="show")
+     * @Route("/show/{slug<^[a-z0-9-]+$>}", defaults={"slug" = null}, name="wild_show")
      * @return Response
      */
     public function show(?string $slug):Response
