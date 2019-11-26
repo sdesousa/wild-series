@@ -42,3 +42,29 @@ h1 {
   color: var(--color-primary);
   text-align: center;
 }
+
+.titleSeason {
+  text-align: left;
+  border-bottom: 1px solid var(--color-primary);
+}
+
+a, a:hover {
+  text-decoration: none;
+}
+
+.linkProgram, .linkProgram:hover {
+  color: var(--color-primary);
+}
+
+.btn, .btn:hover {
+  background-color: var(--color-primary);
+}
+
+.listEpisodes {
+  border: 1px solid var(--color-somber);
+  width: max-content;
+}
+
+.listEpisodes ul {
+  list-style: none;
+}

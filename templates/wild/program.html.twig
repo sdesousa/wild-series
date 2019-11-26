@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ program.title }}{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-row h-100 mt-5">
+        <img class="align-self-start mr-3 p-3 h-75" src="{{program.poster}}" alt="{{ program.title }} poster">
+        <div class="media d-flex flex-column justify-content-between h-75 p-5">
+            <div>
+                <div class="media-body">
+                    <h1 class="mt-0">{{ program.title }}</h1>
+                    <p>{{ program.summary }}</p>
+                    <p>Categorie : {{ program.category.name }}</p>
+                    <p>Liste des saisons :</p>
+                    <ul class="ml-4">
+                        {% for season in seasons %}
+                            <li><a href="{{ path('wild_show_season', {'id': season.id}) }}">{{ season.year }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <a class="align-self-end btn btn-lg" href="{{ path('wild_index') }}">
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+
+
+{% endblock %}

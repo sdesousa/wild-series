@@ -3,16 +3,18 @@
 {% block title %}Three last programs{% endblock %}
 
 {% block body %}
-    <h1>Les trois dernières séries de la catégorie {{ category.name }} : </h1>
-    {% for program in programs %}
-        <div>
-            <h2>{{ program.id }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
-            <p>{{ program.summary }}</p>
-        </div>
-    {% else %}
-        Aucune série trouvée.
-    {% endfor %}
-    <a href="{{ path('app_index') }}">
-        Retour à l'accueil
-    </a>
+    <div class="d-flex flex-column p-5">
+        <h1>Les trois dernières séries de la catégorie {{ category.name }} : </h1>
+        {% for program in programs %}
+            <div>
+                <h2>{{ program.id }} / {{ program.title }} - Catégorie : {{ program.category.name }}</h2>
+                <p>{{ program.summary }}</p>
+            </div>
+        {% else %}
+            Aucune série trouvée.
+        {% endfor %}
+        <a class="align-self-end btn btn-lg" href="{{ path('app_index') }}">
+            Retour à l'accueil
+        </a>
+    </div>
 {% endblock %}

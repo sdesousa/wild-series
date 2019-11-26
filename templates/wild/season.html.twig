@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ program.title }} -  season {{ season.year }}{% endblock %}
+
+{% block body %}
+
+    <div class="d-flex flex-column p-5">
+        <h1 class="titleSeason">Saison {{ season.number }} de {{ season.program.title }}</h1>
+        <p>{{ season.description }}</p>
+        <div class="listEpisodes ml-5">
+            <p class="pt-3 pl-3 pr-3">Liste des épisodes</p>
+            <ul class="pl-3 pr-3">
+                {% for episode in season.episodes %}
+                <li class="ml-5">Episode {{ episode.number }} : {{ episode.title }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <a class="align-self-end btn btn-lg mt-3" href="{{ path('wild_show_program', {'programName': season.program.title|replace({' ':'-'})|lower}) }}">
+            Retour au programme
+        </a>
+    </div>
+
+{% endblock %}
