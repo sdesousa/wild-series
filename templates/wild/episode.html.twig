@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ episode.title }}{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-row h-100 mt-5">
+        <img class="align-self-start mr-3 p-3 h-75" src="{{ episode.season.program.poster }}" alt="{{ episode.season.program.title }} poster">
+        <div class="media d-flex flex-column justify-content-between h-75 p-5">
+            <div>
+                <div class="media-body">
+                    <h1 class="mt-0">{{ episode.title }}</h1>
+                    <p>Saison {{ episode.season.number }} Episode {{  episode.number }} de {{ episode.season.program.title }}</p>
+                    <p>{{ episode.synopsis }}</p>
+                </div>
+            </div>
+            <a class="align-self-end btn btn-lg" href="{{ path('wild_show_season', {'id': episode.season.id}) }}">
+                Retour à la saison
+            </a>
+        </div>
+    </div>
+
+
+{% endblock %}
