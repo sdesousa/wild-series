@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All categories{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-column p-5">
+        <h1>Toutes les catégories de séries : </h1>
+
+        {% for category in categories %}
+            <div>
+                <p>{{ category.name }}</p>
+            </div>
+        {% else %}
+            Aucune série trouvée.
+        {% endfor %}
+        <div class="d-flex justify-content-between">
+            <a class="align-self-start btn btn-lg" href="{{ path('category_add') }}">
+                Ajouter une catégorie
+            </a>
+            <a class="align-self-end btn btn-lg" href="{{ path('app_index') }}">
+                Retour à l'accueil
+            </a>
+        </div>
+    </div>
+{% endblock %}
