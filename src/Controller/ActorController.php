@@ -36,5 +36,4 @@ class ActorController extends AbstractController
             'actor' => $actor,
         ]);
     }
-
 }
