@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Program index{% endblock %}
+
+{% block body %}
+
+    <div class="d-flex flex-column p-5">
+        <h1>Toutes les séries de la table program : </h1>
+
+        {% for program in programs %}
+            <div class="mb-3">
+                <a class="linkProgram" href="{{ path('wild_show_program', {'programName': program.title|replace({' ':'-'})|lower }) }}">{{ loop.index ~ '/ ' ~ program.title }} - Catégorie : {{ program.category.name }}</a>
+                <p>{{ program.summary }}</p>
+                <a class="align-self-end btn btn-lg" href="{{ path('program_show', {'id': program.id}) }}">show</a>
+                <a class="align-self-end btn btn-lg" href="{{ path('program_edit', {'id': program.id}) }}">edit</a>
+            </div>
+        {% else %}
+            Aucune série trouvée.
+        {% endfor %}
+        <div class="d-flex justify-content-between mt-5">
+            <a class="align-self-start btn btn-lg" href="{{ path('program_new') }}">Create new</a>
+            <a class="align-self-end btn btn-lg" href="{{ path('app_index') }}">Retour à l'accueil</a>
+        </div>
+    </div>
+
+{% endblock %}
