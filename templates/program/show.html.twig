@@ -20,6 +20,15 @@
                 {% endfor %}
             </ul>
 
+            <strong>Saison :</strong>
+            <ul>
+                {% for season in program.seasons %}
+                    <li><a href="{{ path('season_show', {'id': season.id }) }}">{{ season.year }}</a></li>
+                {% else %}
+                    <li>Aucune saison pour cette série</li>
+                {% endfor %}
+            </ul>
+
         </div>
     </div>
 

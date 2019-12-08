@@ -16,7 +16,7 @@ class ActorController extends AbstractController
 {
 
     /**
-     * @Route("/{name<^[a-z0-9-]+$>}", name="actor_show", methods={"GET"})
+     * @Route("/{name}", name="actor_show", methods={"GET"})
      */
     public function show(string $name): Response
     {
