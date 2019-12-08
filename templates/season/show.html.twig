@@ -10,11 +10,11 @@
             <p class="pt-3 pl-3 pr-3">Liste des épisodes</p>
             <ul class="pl-3 pr-3">
                 {% for episode in season.episodes %}
-                    <li class="ml-5"><a href="{{ path('episode_show', {'id': episode.id}) }}">Episode {{ episode.number }} : {{ episode.title }}</a></li>
+                    <li class="ml-5"><a href="{{ path('episode_show', {'slug': episode.slug}) }}">Episode {{ episode.number }} : {{ episode.title }}</a></li>
                 {% endfor %}
             </ul>
         </div>
-        <a class="align-self-end btn btn-lg mt-3" href="{{ path('program_show', {'id': season.program.id}) }}">
+        <a class="align-self-end btn btn-lg mt-3" href="{{ path('program_show', {'slug': season.program.slug}) }}">
             Retour au programme
         </a>
     </div>
