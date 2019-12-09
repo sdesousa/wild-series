@@ -1,0 +1,12 @@
+<h1>Une nouvelle série vient d'être publiée sur Wild Séries !</h1>
+
+<h2>{{ program.title }} est la dernière nouveauté</h2>
+<p>{{ program.summary }}</p>
+<p>Avec:</p>
+<ul>
+    {% for actor in program.actors %}
+        <li>{{ actor.name }}</li>
+    {% endfor %}
+</ul>
+
+<a href="https://127.0.0.1:8000/program/{{ program.slug }}"> En voir plus</a>
