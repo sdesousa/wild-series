@@ -9,4 +9,13 @@
             <a class="nav-item nav-link" href="{{ path('actor_index') }}">Acteurs</a>
         </div>
     </div>
+
+    {% if app.user %}
+        {{ app.user.email }}
+        <a class="btn justify-content-end" href="{{ path('app_logout') }}"> Se déconnecter</a>
+    {% else %}
+        <a class="btn justify-content-end" href="{{ path('app_login') }}"> Se connecter</a>
+    {% endif %}
+
+
 </nav>

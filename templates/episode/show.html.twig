@@ -12,6 +12,32 @@
                     <p>{{ episode.synopsis }}</p>
                 </div>
             </div>
+
+            {% if app.user %}
+                <h2 class="mt-4">Ajouter un commentaires :</h2>
+                <div class="flex-column-reverse d-flex">
+                    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+                    {{ form_start(form) }}
+                    <button type="submit" name="btnAddComment" class="btn btn-lg">{{ button_label|default('Poster') }}</button>
+                    {{ form_end(form) }}
+                </div>
+
+            {% endif %}
+
+            <div>
+                <h2 class="mt-4">Commentaires :</h2>
+                <ul>
+                    {% for comment in episode.comments %}
+                    <li>
+                        <p>{{ comment.author.username ~ ' : ' ~ comment.rate}}</p>
+                        <p>{{ comment.comment }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+
             <a class="align-self-end btn btn-lg" href="{{ path('season_show', {'id': episode.season.id}) }}">
                 Retour à la saison
             </a>
