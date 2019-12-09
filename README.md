@@ -18,3 +18,5 @@ Video quete 15 : https://drive.google.com/open?id=1w9LTEVNA-TdVRFC3ZlgsHP9O5NSFI
 Video quete 16 : https://drive.google.com/open?id=1oT-XxPl1hDZzWQZTDkzOi1o_FAe60j-f
 
 Video quete 17 : https://drive.google.com/open?id=15w7vVEnEWybdy4iZBVNcg9pX_BXXKFe9
+
+Video quete 18 : https://drive.google.com/open?id=19neGqFHTne3pkqbGZLUwM3rj810cbFq5
