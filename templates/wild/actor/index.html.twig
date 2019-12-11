@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All actors{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-column p-5">
+        <h1>Tous les acteurs : </h1>
+
+        {% for actor in actors %}
+            <div>
+                <a class="linkProgram" href="{{ path('wild_show_actor', {'slug': actor.slug }) }}">{{ loop.index ~ '/ ' ~ actor.name }}</a>
+                <p class="mt-1">Séries :</p>
+                <ul>
+                    {% for program in actor.programs %}
+                        <li class="ml-5"><a href="{{ path('wild_show_program', {'slug': program.slug}) }}">{{ program.title }}</a></li>
+                    {% else %}
+                        <li>Aucune série pour cet acteur</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            Aucun acteur trouvé.
+        {% endfor %}
+        <a class="align-self-end btn btn-lg" href="{{ path('app_index') }}">
+            Retour à l'accueil
+        </a>
+    </div>
+{% endblock %}

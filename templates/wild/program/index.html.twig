@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All programs{% endblock %}
+
+{% block body %}
+    <div class="d-flex flex-column p-5">
+        <h1>Toutes les séries de la table program : </h1>
+
+        <div class="searchField p-3">
+            {% form_theme form 'foundation_5_layout.html.twig' %}
+            {{ form_start(form) }}
+            {{ form_row(form.searchField) }}
+            <button class="align-self-end btn btn-lg" type="submit" name="btnSearch">Rechercher</button>
+            {{ form_end(form) }}
+        </div>
+
+        {% for program in programs %}
+            <div>
+                <a class="linkProgram" href="{{ path('wild_show_program', {'slug': program.slug }) }}">{{ loop.index ~ '/ ' ~ program.title }} - Catégorie : {{ program.category.name }}</a>
+                <p>{{ program.summary }}</p>
+            </div>
+        {% else %}
+            Aucune série trouvée.
+        {% endfor %}
+        <a class="align-self-end btn btn-lg" href="{{ path('app_index') }}">
+            Retour à l'accueil
+        </a>
+    </div>
+{% endblock %}

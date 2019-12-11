@@ -2,11 +2,14 @@
 // src/Controller/WildController.php
 namespace App\Controller;
 
+use App\Entity\Actor;
 use App\Entity\Category;
+use App\Entity\Comment;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
 use App\Form\CategoryType;
+use App\Form\CommentType;
 use App\Form\ProgramSearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,9 +22,9 @@ use Symfony\Component\Routing\Annotation\Route;
 Class WildController extends AbstractController
 {
     /**
-     * @Route("/index", name="index")
+     * @Route("/program/index", name="index_program")
      */
-    public function index(): Response
+    public function indexProgram(): Response
     {
 
         $programs = $this->getDoctrine()->getRepository(Program::class)->findAll();
@@ -35,43 +38,89 @@ Class WildController extends AbstractController
             ['method' => Request::METHOD_GET]
         );
         return $this->render(
-            'wild/index.html.twig', [
+            'wild/program/index.html.twig', [
                 'programs' => $programs,
                 'form' => $form->createView(),
             ]);
     }
 
     /**
-     * Getting a program with a formatted slug for title
-     *
-     * @param string $slug The slugger
-     * @Route("/show/{slug<^[a-z0-9-]+$>}", defaults={"slug" = null}, name="show")
-     * @return Response
+     * @Route("/actor/index", name="index_actor")
      */
-    public function show(?string $slug):Response
+    public function indexActor(): Response
     {
-        if (!$slug) {
-            throw $this
-                ->createNotFoundException('No slug has been sent to find a program in program\'s table.');
-        }
-        $slug = preg_replace(
-            '/-/',
-            ' ', ucwords(trim(strip_tags($slug)), "-")
-        );
-        $program = $this->getDoctrine()
-            ->getRepository(Program::class)
-            ->findOneBy(['title' => mb_strtolower($slug)]);
-        if (!$program) {
-            throw $this->createNotFoundException(
-                'No program with '.$slug.' title, found in program\'s table.'
-            );
-        }
 
-        return $this->render('wild/show.html.twig', [
-            'program' => $program,
-            'slug'  => $slug,
+        $actors = $this->getDoctrine()->getRepository(Actor::class)->findAll();
+
+        if (!$actors) {
+            throw $this->createNotFoundException('No actor found in actor\'s table.');
+        }
+        return $this->render(
+            'wild/actor/index.html.twig', [
+            'actors' => $actors,
         ]);
     }
+
+    /**
+     *
+     * @Route("/program/show/{slug}", name="show_program", methods={"GET"})
+     * @return Response
+     */
+    public function showProgram(Program $program):Response
+    {
+        return $this->render('wild/program/show.html.twig', [
+            'program' => $program,
+        ]);
+    }
+
+    /**
+     *
+     * @Route("/actor/show/{slug}", name="show_actor", methods={"GET"})
+     * @return Response
+     */
+    public function showActor(Actor $actor):Response
+    {
+        return $this->render('wild/actor/show.html.twig', [
+            'actor' => $actor,
+        ]);
+    }
+
+    /**
+     * @Route("/season/show/{id}", name="show_season", methods={"GET"})
+     */
+    public function showSeason(Season $season): Response
+    {
+        return $this->render('wild/season/show.html.twig', [
+            'season' => $season,
+        ]);
+    }
+
+    /**
+     * @Route("/episode/show/{slug}", name="show_episode", methods={"GET", "POST"})
+     */
+    public function showEpisode(Episode $episode, Request $request): Response
+    {
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment, ['method' => Request::METHOD_POST]);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $comment->setAuthor($this->getUser());
+            $comment->setEpisode($episode);
+            $comment->setRate($data->getRate());
+            $comment->setComment($data->getComment());
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('wild_show_episode', ['slug' => $episode->getSlug()]);
+        }
+        return $this->render('wild/episode/show.html.twig', [
+            'episode' => $episode,
+            'form' => $form->createView(),
+        ]);
+    }
+
 
     /**
      *
@@ -99,7 +148,7 @@ Class WildController extends AbstractController
     /**
      *
      * @param string $programName
-     * @Route("/program/{programName<^[a-zA-Z0-9-]+$>}", name="show_program")
+     * @Route("/program/{programName<^[a-zA-Z0-9-]+$>}", name="show_by_program")
      * @return Response
      */
     public function showByProgram(string $programName): Response
@@ -134,7 +183,7 @@ Class WildController extends AbstractController
     /**
      *
      * @param int $id
-     * @Route("/season/{id<^\d+>}", name="show_season")
+     * @Route("/season/{id<^\d+>}", name="show_by_season")
      * @return Response
      */
     public function showBySeason(int $id):Response
@@ -165,10 +214,10 @@ Class WildController extends AbstractController
     /**
      *
      * @param int $id
-     * @Route("/episode/{id<^\d+>}", name="show_episode")
+     * @Route("/episode/{id<^\d+>}", name="show_by_episode")
      * @return Response
      */
-    public function showEpisode(Episode $episode):Response
+    public function showByEpisode(Episode $episode):Response
     {
         return $this->render('wild/episode.html.twig', [
             'episode' => $episode,
