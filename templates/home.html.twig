@@ -3,4 +3,14 @@
 {% block body %}
     <h1>Bienvenue sur {{ website }}!</h1>
 
+    <h2 class="mt-3 ml-3"> Nos dernières séries</h2>
+    {% for program in programs %}
+        <div class="ml-5 mr-5">
+            <a class="linkProgram" href="{{ path('wild_show_program', {'slug': program.slug }) }}">{{ program.title }} - Catégorie : {{ program.category.name }}</a>
+            <p>{{ program.summary }}</p>
+        </div>
+    {% else %}
+        Aucune série trouvée.
+    {% endfor %}
+
 {% endblock %}

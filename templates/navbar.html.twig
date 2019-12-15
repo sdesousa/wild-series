@@ -12,6 +12,7 @@
 
     {% if app.user %}
         {{ app.user.email }}
+        <a class="btn justify-content-end mr-3" href="{{ path('app_profile') }}"> Mon compte</a>
         <a class="btn justify-content-end" href="{{ path('app_logout') }}"> Se déconnecter</a>
     {% else %}
         <a class="btn justify-content-end" href="{{ path('app_login') }}"> Se connecter</a>
