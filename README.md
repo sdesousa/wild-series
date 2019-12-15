@@ -26,3 +26,5 @@ Video quete 19 : https://drive.google.com/open?id=18uMALFjdYhiX-zKxHWkCAkz7wVGEX
 Video quete 20 : https://drive.google.com/open?id=1j0s0CwhlnIQLqWdMMQUinogHcXtIxeYI
 
 Video quete 21 : https://drive.google.com/open?id=1nHuEq3m76IF6VdvSEyPp9_CUMonkeuS7
+
+Video quete 22 : https://drive.google.com/open?id=1h-BDkv-BC3YSMDBc9l4DZLdQ25IiWDFq

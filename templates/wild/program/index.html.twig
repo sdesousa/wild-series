@@ -18,6 +18,16 @@
             <div>
                 <a class="linkProgram" href="{{ path('wild_show_program', {'slug': program.slug }) }}">{{ loop.index ~ '/ ' ~ program.title }} - Catégorie : {{ program.category.name }}</a>
                 <p>{{ program.summary }}</p>
+                <ul>
+                    <p>Liste des acteurs : </p>
+                    {% if program.actors|length >0 %}
+                        {% for actor in program.actors %}
+                            <li class="ml-5">{{ actor.name }}</li>
+                        {% endfor %}
+                    {% else %}
+                        <li class="ml-5">Aucun acteur associé</li>
+                    {% endif %}
+                </ul>
             </div>
         {% else %}
             Aucune série trouvée.
