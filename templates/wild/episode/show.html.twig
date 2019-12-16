@@ -30,7 +30,7 @@
                     <li>
                         <p>{{ comment.author.username ~ ' : ' ~ comment.rate}}</p>
                         <p>{{ comment.comment }}</p>
-                        {% if is_granted('ROLE_SUBSCRIBER') %}
+                        {% if is_granted('ROLE_SUBSCRIBER') and app.user.id == comment.author.id %}
                             {{ include('wild/episode/_delete_form.html.twig') }}
                         {%endif%}
 
