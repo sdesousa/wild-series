@@ -22,3 +22,4 @@ Video quete 17 : https://drive.google.com/open?id=15w7vVEnEWybdy4iZBVNcg9pX_BXXK
 Video quete 18 : https://drive.google.com/open?id=19neGqFHTne3pkqbGZLUwM3rj810cbFq5
 
 Video quete 19 : https://drive.google.com/open?id=18uMALFjdYhiX-zKxHWkCAkz7wVGEXHRf
+Video quete 19_suite : https://drive.google.com/open?id=1riFGPCjOpH46CW8YhcA9CErh22O5sEGX
